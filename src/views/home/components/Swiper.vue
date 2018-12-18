@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption" ref="mySwiper">
-      <swiper-slide v-for="item of swiperList" :key="item.id">
-        <img class="swiper-img" :src="item.src" alt="">
+    <swiper :options="swiperOption" ref="mySwiper" v-if="list">
+      <swiper-slide v-for="item of list" :key="item.id">
+        <img class="swiper-img" :src="item.imgUrl" alt>
       </swiper-slide>
-      <div class="swiper-pagination"  slot="pagination"></div>
+      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
 </template>
@@ -14,19 +14,17 @@ export default {
   name: 'homeSwiper',
   data () {
     return {
-      swiperList: [
-        {
-          id: '001',
-          src: 'https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20181214_cpm_10281.jpg'
-        },
-        {
-          id: '002',
-          src: 'https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20181214_cpm_10281.jpg'
-        }
-      ],
       swiperOption: {
         pagination: '.swiper-pagination',
         loop: true
+      }
+    }
+  },
+  props: {
+    list: {
+      type: Array,
+      default () {
+        return []
       }
     }
   }
