@@ -6,10 +6,12 @@
     <div class="header-input">
       <span class="iconfont icon-sousuo"></span>输入城市/景点/游玩主体
     </div>
-    <div class="header-right">
-      {{city}}
-      <span class="iconfont icon-jiantou"></span>
-    </div>
+    <router-link to="/city">
+      <div class="header-right">
+        {{city}}
+        <span class="iconfont icon-jiantou"></span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -37,7 +39,7 @@ export default {
 @import '~styles/varibles.styl'
 .homeHeader
   display flex
-  line-height 0.86rem
+  line-height $headerHeight
   background $bgColor
   color #fff
   .header-left
@@ -58,6 +60,7 @@ export default {
   .header-right
     width 1.24rem
     text-align center
+    color #fff
     .icon-jiantou
       font-size 0.24rem
 </style>
