@@ -1,12 +1,6 @@
 <template>
   <div class="list">
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
+    <div class="item" v-for="item in alphabet" :key="item">{{item}}</div>
   </div>
 </template>
 
@@ -18,8 +12,10 @@ export default {
 
     }
   },
-  components: {
-
+  props: {
+    alphabet: {
+      type: Array
+    }
   }
 }
 </script>
