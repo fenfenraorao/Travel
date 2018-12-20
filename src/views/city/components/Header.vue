@@ -3,7 +3,6 @@
     <router-link to="/">
       <div class="iconfont icon-fanhui"></div>
     </router-link>
-    <div class="header-left"></div>
   </div>
 </template>
 
