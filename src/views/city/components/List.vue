@@ -31,32 +31,24 @@
 
 <script>
 import BScroll from 'better-scroll'
-import axios from 'axios'
 
 export default {
   name: 'CityList',
   data () {
     return {
-      cities: null,
-      hotCities: null,
       iscroll: null
     }
   },
-  methods: {
-    getCityInfo () {
-      axios.get('/api/city.json')
-        .then(this.getCityInfoSucc)
-    },
-    getCityInfoSucc ({ data: { data: { hotCities, cities } } }) {
-      this.cities = cities
-      this.hotCities = hotCities
-    }
-  },
-  created () {
-    this.getCityInfo()
-  },
   mounted () {
     this.iscroll = new BScroll(this.$refs.wrapper)
+  },
+  props: {
+    cities: {
+      type: Object
+    },
+    hotCities: {
+      type: Array
+    }
   }
 }
 </script>
