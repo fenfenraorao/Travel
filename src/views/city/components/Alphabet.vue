@@ -6,7 +6,7 @@
       :key="item"
       :ref="item"
       @touchstart="handleTouchStart"
-      @touchmove="handleTouchMove"
+      @touchmove="throttle"
       @touchend="handleTouchEnd"
       @click="handleLetterClick(item)"
     >{{item}}</div>
@@ -18,12 +18,18 @@ export default {
   name: 'CityAlphabet',
   data () {
     return {
+      interval: 300,
+      startY: 0,
+      timer: null,
       touchStatus: false
     }
   },
   props: {
     alphabet: Array,
     top: Number
+  },
+  updated () {
+    this.startY = this.$refs['A'][0].offsetTop
   },
   methods: {
     handleLetterClick (letter) {
@@ -34,8 +40,7 @@ export default {
     },
     handleTouchMove (e) {
       if (this.touchStatus) {
-        const startY = this.$refs['A'][0].offsetTop
-        const touchY = e.touches[0].clientY - this.top - startY
+        const touchY = e.touches[0].clientY - this.top - this.startY
         const eachHieght = e.target.offsetHeight
         const index = Math.floor(touchY / eachHieght)
         if (index > -1 && index < this.alphabet.length) {
@@ -45,6 +50,15 @@ export default {
     },
     handleTouchEnd () {
       this.touchStatus = false
+    },
+    throttle (e) {
+      let canRun = true
+      if (!canRun) return
+      canRun = false
+      setTimeout(() => {
+        this.handleTouchMove.apply(this, arguments)
+        canRun = true
+      }, this.interval)
     }
   }
 }
