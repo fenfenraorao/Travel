@@ -38,7 +38,9 @@ export default {
         const touchY = e.touches[0].clientY - this.top - startY
         const eachHieght = e.target.offsetHeight
         const index = Math.floor(touchY / eachHieght)
-        this.handleLetterClick(this.alphabet[index])
+        if (index > -1 && index < this.alphabet.length) {
+          this.handleLetterClick(this.alphabet[index])
+        }
       }
     },
     handleTouchEnd () {
