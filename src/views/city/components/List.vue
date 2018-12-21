@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="area">
-        <div v-for="(cityObj,city) of cities" :key="city">
+        <div v-for="(cityObj,city) of cities" :key="city" :ref="city">
           <div class="title border-topbottom">{{city}}</div>
           <div class="item-list" v-for="cityName of cityObj" :key="cityName.id">
             <div class="item border-bottom">{{cityName.name}}</div>
@@ -41,13 +41,18 @@ export default {
   },
   mounted () {
     this.iscroll = new BScroll(this.$refs.wrapper)
+    this.$emit('getOffsetTop', this.$refs.wrapper.offsetTop)
   },
   props: {
-    cities: {
-      type: Object
-    },
-    hotCities: {
-      type: Array
+    cities: Object,
+    hotCities: Array,
+    letter: String
+  },
+  watch: {
+    letter (n) {
+      if (n) {
+        this.iscroll.scrollToElement(this.$refs[n][0])
+      }
     }
   }
 }
