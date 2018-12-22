@@ -1,0 +1,76 @@
+<template>
+  <div>
+    <div class="banner" @click="handleBannerClick">
+      <img
+        class="banner-img"
+        src="https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20181214_cpm_10281.jpg"
+        alt
+      >
+      <div class="banner-info">
+        <div class="banner-title">北京温泉排行榜</div>
+        <div class="banner-number">
+          <span class="iconfont icon-sousuo"></span>39
+        </div>
+      </div>
+    </div>
+    <common-gallary :list="list" :showGallary="showGallary" @close="handleGallayClose"></common-gallary>
+  </div>
+</template>
+
+<script>
+import CommonGallary from 'common/gallary/Gallary'
+
+export default {
+  name: 'Banner',
+  components: {
+    CommonGallary
+  },
+  data () {
+    return {
+      list: ['https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20181214_cpm_10281.jpg', 'https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20181214_cpm_10281.jpg'],
+      showGallary: false
+    }
+  },
+  methods: {
+    handleBannerClick () {
+      this.showGallary = true
+    },
+    handleGallayClose () {
+      this.showGallary = false
+    }
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+.banner
+  position relative
+  overflow hidden
+  height 0
+  padding-bottom 24.5%
+  .banner-img
+    width 100%
+  .banner-info
+    display flex
+    position absolute
+    left 0
+    right 0
+    bottom 0
+    line-height 0.6rem
+    color #fff
+    background-image linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8))
+    .banner-title
+      flex 1
+      font-size 0.32rem
+      padding 0 0.2rem
+    .banner-number
+      height 0.32rem
+      line-height 0.32rem
+      margin 0.14rem
+      padding 0 0.4rem
+      border-radius 0.2rem
+      background rgba(0, 0, 0, 0.8)
+      font-size 0.24rem
+      .icon-sousuo
+        font-size 0.2rem
+</style>

@@ -57,7 +57,7 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
 .home {
   font-size: 50px;
 }
