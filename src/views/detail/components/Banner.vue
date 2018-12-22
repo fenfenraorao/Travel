@@ -21,7 +21,7 @@
 import CommonGallary from 'common/gallary/Gallary'
 
 export default {
-  name: 'Banner',
+  name: 'DetailBanner',
   components: {
     CommonGallary
   },
