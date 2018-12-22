@@ -6,7 +6,7 @@
           <div class="icon-img-wrapper">
             <img class="icon-img" :src="item.imgUrl" alt>
           </div>
-          <p class="icon-content">{{item.content}}</p>
+          <p class="icon-content">{{item.desc}}</p>
         </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'HomeIcons',
   data () {
@@ -24,15 +25,10 @@ export default {
       }
     }
   },
-  props: {
-    list: {
-      type: Array,
-      default () {
-        return []
-      }
-    }
-  },
   computed: {
+    ...mapState({
+      list: (state) => state.iconList
+    }),
     pages () {
       const pages = []
       if (this.list && this.list.length > 0) {

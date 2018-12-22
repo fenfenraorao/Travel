@@ -8,7 +8,7 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
-        {{city}}
+        {{$store.state.city}}
         <span class="iconfont icon-jiantou"></span>
       </div>
     </router-link>
@@ -23,13 +23,7 @@ export default {
 
     }
   },
-  props: {
-    city: {
-      type: String,
-      default: ''
-    }
-  },
-  components: {
+  computed: {
 
   }
 }
@@ -58,7 +52,8 @@ export default {
     border-radius 0.1rem
     color #ccc
   .header-right
-    width 1.24rem
+    min-width 1.04rem
+    padding 0 0.1rem
     text-align center
     color #fff
     .icon-jiantou

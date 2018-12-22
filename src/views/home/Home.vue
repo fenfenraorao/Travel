@@ -1,20 +1,21 @@
 <template>
   <div class="page">
-    <home-header :city="city"></home-header>
-    <home-swiper :list="swiperList"></home-swiper>
-    <home-icons :list="iconList"></home-icons>
-    <home-recomment :list="recommendList"></home-recomment>
-    <home-weekend :list="weekendList"></home-weekend>
+    <home-header></home-header>
+    <home-swiper></home-swiper>
+    <home-icons></home-icons>
+    <home-recomment></home-recomment>
+    <home-weekend></home-weekend>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import { mapState, mapActions } from 'vuex'
 import HomeHeader from './components/Header'
 import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import HomeRecomment from './components/Recomment'
 import HomeWeekend from './components/Weekend'
-import axios from 'axios'
 
 export default {
   name: 'home',
@@ -27,24 +28,19 @@ export default {
   },
   data () {
     return {
-      city: null,
-      iconList: null,
-      recommendList: null,
-      swiperList: null,
-      weekendList: null
     }
   },
+  computed: {
+    ...mapState(['iconList', 'recommendList', 'swiperList', 'weekendList'])
+  },
   methods: {
+    ...mapActions(['getIndex']),
     getHomeInfo () {
       axios.get('/api/index.json')
         .then(this.getHomeInfoSucc)
     },
-    getHomeInfoSucc ({ data: { data: { city, iconList, recommendList, swiperList, weekendList } } }) {
-      this.city = city
-      this.iconList = iconList
-      this.recommendList = recommendList
-      this.swiperList = swiperList
-      this.weekendList = weekendList
+    getHomeInfoSucc ({ data: { data: { iconList, recommendList, swiperList, weekendList } } }) {
+      this.getIndex({ iconList, recommendList, swiperList, weekendList })
     }
   },
   mounted () {
