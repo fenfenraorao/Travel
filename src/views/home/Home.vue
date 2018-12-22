@@ -28,15 +28,16 @@ export default {
   },
   data () {
     return {
+      lastCity: null
     }
   },
   computed: {
-    ...mapState(['iconList', 'recommendList', 'swiperList', 'weekendList'])
+    ...mapState(['iconList', 'recommendList', 'swiperList', 'weekendList', 'city'])
   },
   methods: {
     ...mapActions(['getIndex']),
     getHomeInfo () {
-      axios.get('/api/index.json')
+      axios.get(`/api/index.json?city=${this.city}`)
         .then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc ({ data: { data: { iconList, recommendList, swiperList, weekendList } } }) {
@@ -44,7 +45,14 @@ export default {
     }
   },
   mounted () {
+    this.lastCity = this.city
     this.getHomeInfo()
+  },
+  activated () {
+    if (this.lastCity !== this.city) {
+      this.getHomeInfo()
+      this.lastCity = this.city
+    }
   }
 }
 </script>
