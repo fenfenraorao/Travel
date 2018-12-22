@@ -1,19 +1,16 @@
 <template>
   <div>
     <div class="banner" @click="handleBannerClick">
-      <img
-        class="banner-img"
-        src="https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20181214_cpm_10281.jpg"
-        alt
-      >
+      <img class="banner-img" :src="bannerImg" alt>
       <div class="banner-info">
-        <div class="banner-title">北京温泉排行榜</div>
+        <div class="banner-title">{{sightName}}</div>
         <div class="banner-number">
-          <span class="iconfont icon-sousuo"></span>39
+          <span class="iconfont icon-sousuo"></span>
+          {{gallaryImgs.length}}
         </div>
       </div>
     </div>
-    <common-gallary :list="list" :showGallary="showGallary" @close="handleGallayClose"></common-gallary>
+    <common-gallary :list="gallaryImgs" :showGallary="showGallary" @close="handleGallayClose"></common-gallary>
   </div>
 </template>
 
@@ -27,9 +24,13 @@ export default {
   },
   data () {
     return {
-      list: ['https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20181214_cpm_10281.jpg', 'https://source.qunarzz.com/site/images/wap/home/recommend/iphoneplus/20181214_cpm_10281.jpg'],
       showGallary: false
     }
+  },
+  props: {
+    sightName: String,
+    bannerImg: String,
+    gallaryImgs: Array
   },
   methods: {
     handleBannerClick () {
@@ -47,7 +48,7 @@ export default {
   position relative
   overflow hidden
   height 0
-  padding-bottom 24.5%
+  padding-bottom 55.5%
   .banner-img
     width 100%
   .banner-info
