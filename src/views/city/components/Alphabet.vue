@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'CityAlphabet',
   data () {
@@ -24,9 +26,8 @@ export default {
       touchStatus: false
     }
   },
-  props: {
-    alphabet: Array,
-    top: Number
+  computed: {
+    ...mapGetters(['alphabet'])
   },
   updated () {
     this.startY = this.$refs['A'][0].offsetTop

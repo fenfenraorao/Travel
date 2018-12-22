@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'homeSwiper',
   data () {
@@ -20,13 +22,10 @@ export default {
       }
     }
   },
-  props: {
-    list: {
-      type: Array,
-      default () {
-        return []
-      }
-    }
+  computed: {
+    ...mapState({
+      list: (state) => state.recommendList
+    })
   }
 }
 </script>

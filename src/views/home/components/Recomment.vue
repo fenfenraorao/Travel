@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'HomeRecomment',
   data () {
@@ -22,16 +24,10 @@ export default {
 
     }
   },
-  props: {
-    list: {
-      type: Array,
-      default () {
-        return []
-      }
-    }
-  },
-  components: {
-
+  computed: {
+    ...mapState({
+      list: (state) => state.recommendList
+    })
   }
 }
 </script>
